@@ -23,8 +23,7 @@ export const addDoctor = async (req, res) => {
             return res.json({success: false, message: "Please enter atleast 8 digits password"});
         }
 
-        const salt = await bcrypt.genSalt(10);
-        const hashedpassword = await bcrypt.hash(password, salt);
+        const hashedpassword = await bcrypt.hash(password, 10);
 
         const imageupload = await clodinary.uploader.upload(imagefile.path, {resource_type: "image"})
         const imgurl = imageupload.secure_url;
@@ -51,12 +50,28 @@ export const loginAdmin = async (req, res) => {
 
         if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
             
-            const token = await jwt.sign(email+password, process.env.JWT_SECRET);
+            const token = jwt.sign(email + password, process.env.JWT_SECRET);
+            return res.json({success: true, message: "Token is created", token})
 
         } else {
-            return res.json({success: false, message: "Invalid Admin Credentials"})
+            return res.json({success: false, message: "Invalid Admin Credentials"});
         }
 
+    } catch (error) {
+        console.log(error);
+        return res.json({success: false, message: error.message});
+    }
+}
+
+// API to get all doctors 
+
+export const alldoctors = async (req, res) => {
+    try {
+
+        const doctors = await doctorModel.find({}).select("-password");
+
+        return res.json({success: true, doctors});
+        
     } catch (error) {
         console.log(error);
         return res.json({success: false, message: error.message});
