@@ -32,7 +32,7 @@ const Appointment = () => {
 
       let endtime = new Date();
       endtime.setDate(today.getDate()+i);
-      endtime.setHours(21,0,0,0);
+      endtime.setHours(23,0,0,0);
 
       if(today.getDate() === currentdate.getDate()){
         currentdate.setHours(currentdate.getHours() > 10 ? currentdate.getHours() + 1 : 10);
