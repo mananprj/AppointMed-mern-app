@@ -7,7 +7,7 @@ export const authAdmin = async (req, res, next) => {
         if(!atoken){
             res.json({success: false, message: "Not Authorized Login Again"});
         }
-        const tokendecode = await jwt.verify(atoken, process.env.JWT_SECRET);
+        const tokendecode = jwt.verify(atoken, process.env.JWT_SECRET);
 
         if(tokendecode !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD){
             return res.json({success: true, message: "Invaid token"})
