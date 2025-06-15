@@ -26,16 +26,16 @@ services:
     depends_on:
       - mongo
 
-  forntend:
+  frontend:
     build:
-      context: ./forntend
+      context: ./frontend
       dockerfile: Dockerfile
     container_name: appointment-frontend
     ports:
       - "5173:5173"
     volumes:
       - /src/app/node_modules
-      - ./forntend:/src/app
+      - ./frontend:/src/app
     networks:
       - appointment-network
     depends_on:
