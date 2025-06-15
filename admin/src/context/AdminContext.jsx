@@ -11,7 +11,7 @@ const AdminContextProvider = (props) => {
     const [appointments, setappointments] = useState([]);
     const [dashData, setdashData] = useState(false);
 
-    const backendurl = import.meta.env.VITE_BACKEND_URL;
+    const backendurl = (import.meta.env.PRODUCTION == true) ? import.meta.env.VITE_BACKEND_URL : import.meta.env.DEPLOYMENT_URL;
 
     const getAllDoctors = async () => {
         try {
