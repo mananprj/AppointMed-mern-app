@@ -18,8 +18,6 @@ services:
     container_name: appointment-backend
     ports:
       - "4000:4000"
-    env_file:
-      - ./backend/.env
     volumes:
       - /src/app/node_modules
       - ./backend:/src/app
@@ -35,10 +33,6 @@ services:
     container_name: appointment-frontend
     ports:
       - "5173:5173"
-    env_file:
-      - ./forntend/.env
-    environment:
-      - PRODUCTION=false
     volumes:
       - /src/app/node_modules
       - ./forntend:/src/app
@@ -54,10 +48,6 @@ services:
     container_name: appointment-admin
     ports:
       - "5174:5174"
-    env_file:
-      - ./admin/.env
-    environment:
-      - PRODUCTION=false
     volumes:
       - /src/app/node_modules
       - ./admin:/src/app
