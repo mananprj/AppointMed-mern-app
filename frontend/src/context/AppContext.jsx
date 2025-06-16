@@ -7,7 +7,7 @@ export const AppContext = createContext();
 const AppContextProvider = (props) => {
 
     const currencySymbol = "$";
-    const backendurl = (import.meta.env.PRODUCTION == true) ? import.meta.env.VITE_BACKEND_URL : import.meta.env.DEPLOYMENT_URL;
+    const backendurl = import.meta.env.VITE_BACKEND_URL;
     const [doctors, setdoctors] = useState([]);
     const [token, setToken] = useState(localStorage.getItem("token") ? localStorage.getItem("token") : false);
     const [userdata, setuserData] = useState(false);
